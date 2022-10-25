@@ -59,7 +59,7 @@ export default function Navbar({ children }: { children: ReactNode }) {
         ) : null}
       </Box>
 
-      <Box bg={"gray.100"} p={4}>
+      <Box h={"100vh"} overflow={'auto'} bg={"gray.100"} p={4}>
         {children}
       </Box>
     </>
