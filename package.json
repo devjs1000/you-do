@@ -15,10 +15,12 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@tauri-apps/api": "^1.1.0",
+    "formik": "^2.2.9",
     "framer-motion": "^7.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.6.0"
+    "react-icons": "^4.6.0",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.1.0",

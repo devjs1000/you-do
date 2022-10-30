@@ -15,7 +15,13 @@ import {
 
 import { FaTrash } from "react-icons/fa";
 
-const Task = ({ id, title, description, start, end, tags }: TaskType) => {
+const Task = ({ remove, complete, task }: Props) => {
+  const handleRemove = () => {
+    remove(task.id);
+  };
+  const handleComplete = (e: any) => {
+    complete(task.id, e.target.checked);
+  };
   return (
     <Flex
       rounded={"md"}
@@ -28,21 +34,26 @@ const Task = ({ id, title, description, start, end, tags }: TaskType) => {
       justifyContent={"space-between"}
       userSelect={"none"}
     >
-      <Checkbox size={"lg"} colorScheme={"green"} />
+      <Checkbox
+        onChange={handleComplete}
+        isChecked={task.completed}
+        size={"lg"}
+        colorScheme={"green"}
+      />
       <Popover>
         <PopoverTrigger>
           <Heading cursor={"pointer"} fontSize={"xl"}>
-            {title}
+            {task.title}
           </Heading>
         </PopoverTrigger>
         <PopoverContent>
           <PopoverHeader>
-            <Heading fontSize={"xl"}>{title}</Heading>
+            <Heading fontSize={"xl"}>{task.title}</Heading>
           </PopoverHeader>
           <PopoverArrow />
           <PopoverCloseButton />
           <Box p={4}>
-            <Text fontSize={"md"}>{description}</Text>
+            <Text fontSize={"md"}>{task.description}</Text>
           </Box>
         </PopoverContent>
       </Popover>
@@ -50,6 +61,7 @@ const Task = ({ id, title, description, start, end, tags }: TaskType) => {
         colorScheme={"red"}
         icon={<FaTrash />}
         aria-label={"delete"}
+        onClick={handleRemove}
       />
     </Flex>
   );
@@ -62,6 +74,13 @@ export interface TaskType {
   start: string;
   end: string;
   tags: string[];
+  completed: boolean;
+}
+
+interface Props {
+  remove: (id: string) => void;
+  complete: (id: string, state: boolean) => void;
+  task: TaskType;
 }
 
 export default Task;
